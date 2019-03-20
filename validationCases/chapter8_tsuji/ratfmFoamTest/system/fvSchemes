@@ -1,0 +1,89 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.2.2                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+ddtSchemes
+{
+    default             Euler;
+}
+
+gradSchemes
+{
+    default             Gauss;
+}
+
+divSchemes
+{
+    default             none;
+    div(phi1,U1)        Gauss upwind;
+    div(phi2,U2)        Gauss upwind;
+
+    div(phi2,k2)        Gauss upwind;
+    div(phi2,epsilon2)  Gauss upwind;
+    div(phi2,v2)        Gauss upwind;
+
+    div(phi1,k1)        Gauss upwind;
+    div(phi1,epsilon1)  Gauss upwind;
+    div(phi1,v1)        Gauss upwind;
+    div(phi1,Theta)     Gauss upwind;
+
+    div(phi,alpha1)     Gauss vanLeer;
+    div(phir,alpha1)    Gauss vanLeer;
+/*
+    div(phi1,U1)        Gauss limitedLinearV 1;
+    div(phi2,U2)        Gauss limitedLinearV 1;
+
+    div(phi2,k2)        Gauss limitedLinear01 1;
+    div(phi2,epsilon2)  Gauss limitedLinear01 1;
+    div(phi2,v2)        Gauss limitedLinear01 1;
+
+    div(phi1,k1)        Gauss limitedLinear01 1;
+    div(phi1,epsilon1)  Gauss limitedLinear01 1;
+    div(phi1,v1)        Gauss limitedLinear01 1;
+    div(phi1,Theta)     Gauss limitedLinear 1;
+*/
+    div(U1)             Gauss linear;
+    div(U2)             Gauss linear;
+    div(correctionU1,U1)             Gauss linear;
+    div(correctionU2,U2)             Gauss linear;
+    div(U2)             Gauss linear;
+    div(Rc1)            Gauss linear;
+    div(Rc2)            Gauss linear;
+} 
+
+laplacianSchemes
+{
+    default             Gauss linear corrected;
+}
+
+interpolationSchemes
+{
+    default             linear;
+}
+
+snGradSchemes
+{
+    default             corrected;
+}
+
+fluxRequired
+{
+    default             no;
+    p                   ;
+}
+
+
+// ************************************************************************* //

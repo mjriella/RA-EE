@@ -1,0 +1,79 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:     4.0                                |
+|   \\  /    A nd           | Web:         http://www.foam-extend.org         |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    p
+    {
+        solver          GAMG;
+        tolerance       1e-08;
+        relTol          0.1;
+        smoother        DIC;
+        nPreSweeps      0;
+        nPostSweeps     2;
+        nFinestSweeps   2;
+        cacheAgglomeration true;
+        nCellsInCoarsestLevel 10;
+        agglomerator    faceAreaPair;
+        mergeLevels     1;
+    }
+    pFinal
+    {
+        $p;
+        tolerance       1e-08;
+        relTol          0;
+    }
+
+    alpha1
+    {
+        solver          smoothSolver;
+        smoother		  symGaussSeidel;
+        tolerance       1e-10;
+        relTol           0;
+    }
+
+    "(k1|k2|Theta|epsilon1|epsilon2|v2|v1|f1|f2)"
+    {
+        solver          smoothSolver;
+        smoother        GaussSeidel;
+        tolerance       1e-8;
+        relTol          0;
+        minIter         1;
+    }
+
+}
+
+PIMPLE
+{
+    nOuterCorrectors 1;
+    nCorrectors     2;
+    nNonOrthogonalCorrectors 0;
+    nAlphaCorr      2;
+    nAlphaSubCycles 2;
+    correctAlpha    yes;
+    pRefCell        0;
+    pRefValue       0;
+}
+
+relaxationFactors
+{
+    "(U1|U2)" 0.7;
+    p       0.3;
+    "(k1|k2|Theta|epsilon1|epsilon2|v2|v1|f1|f2)" 0.7;
+} 
+
+
+// ************************************************************************* //

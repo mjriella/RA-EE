@@ -1,0 +1,26 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.2.2                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      multiphaseTurbulenceProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// need both models to be consistent otherwise coupling wont lookup 
+
+multiphaseTurbulence1    particleTurbulence;
+particleTurbulence 		 dispersedkEpsilon;   // dispersedkEpsilon dispersedv2f
+
+multiphaseTurbulence2    fluidTurbulence;
+fluidTurbulence 		 kEpsilon;   // kEpsilon v2f
+
+// ************************************************************************* //

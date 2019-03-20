@@ -1,0 +1,18 @@
+LOCAL_OBJECTS = \
+kineticTheoryModel.o\
+viscosityModel.o\
+newViscosityModel.o\
+GidaspowViscosity.o\
+SyamlalViscosity.o\
+HrenyaSinclairViscosity.o\
+noneViscosity.o\
+conductivityModel.o\
+newConductivityModel.o\
+SyamlalConductivity.o\
+HrenyaSinclairConductivity.o\
+radialModel.o\
+newRadialModel.o\
+SinclairJacksonRadial.o\
+granularPressureModel.o\
+newGranularPressureModel.o\
+LunPressure.o

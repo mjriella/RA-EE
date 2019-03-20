@@ -1,0 +1,21 @@
+EXE_INC = \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/transportModels \
+    -I$(LIB_SRC)/transportModels/incompressible/lnInclude \
+    -I$(LIB_SRC)/turbulenceModels/incompressible/turbulenceModel \
+    -IturbulenceModel \
+    -IinterfacialModels/lnInclude \
+    -IEulerianInterfacialModelS/lnInclude \
+    -IkineticTheoryModels/lnInclude \
+    -IphaseModel/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude \
+    -Iaveraging
+
+EXE_LIBS = \
+    -L$(FOAM_USER_LIBBIN) -lEulerianInterfacialModelsS \
+    -L$(FOAM_USER_LIBBIN) -lphaseModelS \
+    -lfiniteVolume \
+    -lincompressibleTransportModels \
+    -lincompressibleTurbulenceModel \
+    -lincompressibleRASModels \
+    -lkineticTheoryModelS

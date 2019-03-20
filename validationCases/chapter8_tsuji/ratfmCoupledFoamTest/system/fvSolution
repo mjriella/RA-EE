@@ -1,0 +1,146 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:     4.0                                |
+|   \\  /    A nd           | Web:         http://www.foam-extend.org         |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    U1U2p
+    {
+        solver BiCGStab;
+        preconditioner Cholesky;
+
+        tolerance 1e-09;
+        relTol  0.0;
+
+        minIter 1;
+        maxIter 1000;
+    }
+    p
+    {
+        solver          GAMG;
+        tolerance       1e-08;
+        relTol          0.1;
+        smoother        DIC;
+        nPreSweeps      0;
+        nPostSweeps     2;
+        nFinestSweeps   2;
+        cacheAgglomeration true;
+        nCellsInCoarsestLevel 10;
+        agglomerator    faceAreaPair;
+        mergeLevels     1;
+    }
+    pFinal
+    {
+        $p;
+        tolerance       1e-08;
+        relTol          0;
+    }
+    alpha1
+    {
+        solver          smoothSolver;
+        smoother		  GaussSeidel;
+        tolerance       1e-10;
+        relTol           0;
+    }
+
+    "(k1|k2|epsilon1|epsilon2|Theta)"
+    {
+        solver          smoothSolver;
+        smoother  GaussSeidel;
+        tolerance       1e-10;
+        relTol          0;
+        minIter         1;
+    }
+    "(k1Epsilon1|k2Epsilon2)"
+    {
+        solver BiCGStab;
+        preconditioner Cholesky;
+
+        tolerance 1e-09;
+        relTol  0.0;
+
+        minIter 1;
+        maxIter 1000;
+    }
+}
+
+blockSolver
+{
+    convergence 1e-5;
+
+    pRefCell 0;
+    pRefValue 0;
+
+    nAlphaCorr      2;
+    nAlphaSubCycles 2;
+    correctAlpha    yes;
+
+	calcTurbulence  yes;
+}
+
+fieldBounds
+{
+    U1      500;
+    U2      500;
+    p      -5e4 5e4;
+}
+
+PIMPLE
+{
+    nOuterCorrectors 1;
+    nCorrectors     2;
+    nNonOrthogonalCorrectors 0;
+    nAlphaCorr      2;
+    nAlphaSubCycles 2;
+    correctAlpha    yes;
+    pRefCell        0;
+    pRefValue       0;
+}
+
+relaxationFactors
+{
+    //"(U1|U2)" 0.7;
+    //p       0.3;
+    "(k1|k2|Theta|epsilon1|epsilon2|v2|v1|f1|f2)" 0.7;
+} 
+
+
+     /*U1U2p
+     {
+         solver          AMG;
+         smoother GaussSeidel;
+         cycle           V-cycle;
+         coarseningType  AAMG;
+         norm            componentNorm;
+         normComponent   0;
+
+         nPreSweeps      4;
+         nPostSweeps     4;
+         groupSize       2;
+         minCoarseEqns   4;
+         nMaxLevels      10;
+         scale           on;
+         fineSmoother    ILU;
+         coarseSmoother k ILU;
+
+         minIter         1;
+         maxIter         100;
+         tolerance       1e-7;
+         relTol          0.01;
+     }*/
+
+
+
+// ************************************************************************* //
