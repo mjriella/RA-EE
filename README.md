@@ -4,7 +4,7 @@ Two Reynolds-Averaged Euler-Euler models. One is segregated and one is coupled. 
 Tutorials/validation cases for each chapter have been provided. Please note that at the moment the v2f model does 
 not work. It was ported from a different version of OpenFOAM - if i get round to it I will fix it.
 
-The coupled solver requires a 7x7 block therefore some the VectorN for size 7 needs to be defined. Copy and paste the src inside forCompiliationCoupled into the root of your foam-extend-4.0 and recompile. There is definitely a more intelligent way of doing this but needs must.
+The coupled solver requires a 7x7 block therefore the VectorN for size 7 needs to be defined. Copy and paste the src inside forCompiliationCoupled into the root of your foam-extend-4.0 and recompile. There is definitely a more intelligent way of doing this but needs must.
 
 # References
 Riella, M. (2019).
