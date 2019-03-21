@@ -1,1 +1,0 @@
-../frictionalStressModel/SrivastavaSundaresan/SrivastavaSundaresanFrictionalStress.H

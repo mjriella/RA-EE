@@ -1,1 +1,0 @@
-../frictionalStressModel/frictionalStressModel/newFrictionalStressModel.C

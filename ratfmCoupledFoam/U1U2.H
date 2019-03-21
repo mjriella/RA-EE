@@ -18,12 +18,8 @@ volVectorField gradAlpha(fvc::grad(alpha1));
 volVectorField D1 = -Df1*gradAlpha;
 volVectorField D2 =  Df2*gradAlpha;
 
-// Particle pressure
+// Particle pressure.
 volVectorField vPp = fvc::grad(kineticTheory.pa())/rho1;
-
-// correlation of vol frac and pressure grad.
-volVectorField G1 = alpha2*(1 - (rho2/rho1))*g;
-volVectorField G2 = alpha1*((rho1/rho2) - 1)*g;
 
 // Discretise U1.
 volTensorField gradU1T = fvc::grad(U1)().T();
@@ -66,8 +62,7 @@ U1Eqn =
    drag12*U2 
   + D1
   + g
-  + G1
-  //+ vPp
+  + vPp
 );
 
 U1Eqn.relax();
@@ -107,7 +102,6 @@ U2Eqn =
    drag21*U1
   + D2
   + g
-  + G2
 );
 U2Eqn.relax();
 U1U2pEqn.insertEquation(3, U2Eqn);

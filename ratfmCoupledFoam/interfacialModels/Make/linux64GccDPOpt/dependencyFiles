@@ -1,5 +1,0 @@
-DEPENDENCIES = \
-dragModels/dragModel/dragModel.dep\
-dragModels/dragModel/newDragModel.dep\
-dragModels/WenYu/WenYu.dep\
-dragModels/SchillerNaumann/SchillerNaumann.dep

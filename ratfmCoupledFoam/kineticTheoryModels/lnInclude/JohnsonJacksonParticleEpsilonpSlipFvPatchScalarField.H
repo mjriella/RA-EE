@@ -1,1 +1,0 @@
-../derivedFvPatchFields/JohnsonJacksonParticleEpsilonpSlip/JohnsonJacksonParticleEpsilonpSlipFvPatchScalarField.H

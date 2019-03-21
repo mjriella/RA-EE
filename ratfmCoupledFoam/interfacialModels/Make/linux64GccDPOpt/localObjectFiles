@@ -1,5 +1,0 @@
-LOCAL_OBJECTS = \
-dragModel.o\
-newDragModel.o\
-WenYu.o\
-SchillerNaumann.o

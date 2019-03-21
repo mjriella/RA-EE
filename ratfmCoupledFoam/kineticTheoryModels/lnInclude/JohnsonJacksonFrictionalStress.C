@@ -1,1 +1,0 @@
-../frictionalStressModel/JohnsonJackson/JohnsonJacksonFrictionalStress.C

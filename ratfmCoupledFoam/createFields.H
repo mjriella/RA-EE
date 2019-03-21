@@ -148,21 +148,6 @@
         drag1
     );
 
-	// add lookup later
-    volVectorField g_v
-    (
-        IOobject
-        (
-            "g_v",
-            runTime.timeName(),
-            mesh,
-            IOobject::NO_READ,
-            IOobject::NO_WRITE
-        ),
-        mesh,
-        dimensionedVector("zero", dimensionSet (0, 1, -2, 0, 0), vector(-9.8,0,0))
-    );
-
     Info << "Creating field U1U2p\n" << endl;
     volVector7Field U1U2p
     (
